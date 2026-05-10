@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso del Personal - T.I.E.B</title>
+    <link rel="stylesheet" href="stls/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="stls/db-config.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo-area">
+                <img src="Logo.png" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">LOHO</div>
+            </div>
+            <div class="title-area">
+                <h1>T.I.E.B</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="btn">← Volver al Inicio</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="content-block" style="max-width: 500px; margin: 40px auto; border: 1px solid var(--border-color); padding: 30px; background-color: #f9f9f9;">
+            <h2 style="text-align: center; border: none; text-transform: uppercase; letter-spacing: 1px;">Acceso Restringido</h2>
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 30px;">
+                Esta sección es solo para personal autorizado de T.I.E.B.
+            </p>
+
+            <form id="loginForm">
+                <div class="info-item" style="border: none; margin-bottom: 20px;">
+                    <strong style="margin-bottom: 8px;">Correo Electrónico</strong>
+                    <input type="email" id="email" placeholder="ejemplo@tieb.cat" required 
+                           style="width: 100%; padding: 12px; border: 1px solid var(--border-color); font-family: inherit;">
+                </div>
+
+                <div class="info-item" style="border: none; margin-bottom: 30px;">
+                    <strong style="margin-bottom: 8px;">Contraseña</strong>
+                    <input type="password" id="password" placeholder="••••••••" required 
+                           style="width: 100%; padding: 12px; border: 1px solid var(--border-color); font-family: inherit;">
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                    Iniciar Sesión
+                </button>
+                
+                <p id="message" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 All Rights Reserved. 4real</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const message = document.getElementById('message');
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                message.style.color = "var(--primary-blue)";
+                message.innerText = "Verificando...";
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+
+                if (error) {
+                    message.style.color = "red";
+                    message.innerText = "Error de acceso: " + error.message;
+                } else {
+                    message.style.color = "green";
+                    message.innerText = "Acceso concedido. Redirigiendo...";
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

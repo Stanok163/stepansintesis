@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="stls/db-config.js"></script>
+    <script>
+        const supabase = supabase.createClient(_supabaseUrl, _supabaseKey);
+
+        async function checkUser() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+
+                window.location.href = 'login.html';
+            }
+        }
+        checkUser();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - T.I.E.B</title>
+    <link rel="stylesheet" href="stls/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo-area">
+                <img src="Logo.png" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">LOHO</div>
+            </div>
+            <div class="title-area">
+                <h1>T.I.E.B</h1>
+            </div>
+            <div id="user-status" style="margin-left: auto; color: white; font-size: 0.9rem;"></div>
+            <div id="user-status" style="margin-left: auto; text-align: right; color: white;"></div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="button-group">
+                <a href="index.html" class="btn">Página principal</a>
+                <a href="contactos.html" class="btn">Contactos</a>
+                <a href="proyectos.html" class="btn">Proyectos</a>
+            </div>
+            <a href="login.html" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">Log in →</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="content-block">
+            <h2>Sobre nosotros</h2>
+            <p> Nuestra empresa opera y tiene su sede en Barcelona, Cataluña. 
+                Nos especializamos en la preparación y digitalización de su negocio. 
+                Si busca algo más avanzado que una máquina de escribir, no dude en <a href="">contactarnos</a>.
+            </p>
+        </section>
+
+        <section class="content-block">
+            <h3>Servicios prestados</h3>
+            <p>Nuestra empresa le ofrece: creación integral de infraestructura de red en sus instalaciones, 
+                configuración de redes locales para empleados, instalación y configuración de equipos, garantía de ciberseguridad, 
+                elaboración de presupuestos, así como el desarrollo de aplicaciones y sitios web.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 All Rights Rezervet. 4real</p>
+        </div>
+    </footer>
+
+</body>
+</html>
