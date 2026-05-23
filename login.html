@@ -78,11 +78,11 @@
                 const password = document.getElementById('password').value;
 
                 try {
-                    if (typeof supabase === 'undefined') {
-                        throw new Error("ConfigFile db-config.js no encontrado o contiene errores");
+                    if (typeof supabaseClient === 'undefined') {
+                        throw new Error("supabaseClient не найден. Проверь подключение db-config.js");
                     }
 
-                    const { data, error } = await supabase.auth.signInWithPassword({
+                    const { data, error } = await supabaseClient.auth.signInWithPassword({
                         email: email,
                         password: password,
                     });
