@@ -3,18 +3,22 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="stls/db-config.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            setTimeout(async () => {
-                if (typeof supabaseClient !== 'undefined') {
-                    const { data: { user } } = await supabaseClient.auth.getUser();
-                    if (!user) {
-                        window.location.href = 'login.html';
-                    }
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Ждем загрузку клиента
+        setTimeout(async () => {
+            if (typeof supabaseClient !== 'undefined') {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                
+                if (user) {
+                    console.log("Usuario authoritzado:", user.email);
+                } else {
+                    console.log("Usuario no authoritzado.");
                 }
-            }, 500);
-        });
-    </script>
+            }
+        }, 500);
+    });
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - T.I.E.B</title>
