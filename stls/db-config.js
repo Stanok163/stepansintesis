@@ -5,17 +5,33 @@ const supabaseClient = supabase.createClient(_supabaseUrl, _supabaseKey);
 
 async function checkStatus() {
     const statusDiv = document.getElementById('user-status');
-    if (!statusDiv) return;
+    const navButtons = document.getElementById('nav-buttons');
 
     const { data: { user } } = await supabaseClient.auth.getUser();
 
     if (user) {
-        statusDiv.innerHTML = `
-            <span style="opacity: 0.8;">Usuario:</span> <strong style="color: #00d1ff;">${user.email}</strong> 
-            <a href="#" onclick="logout()" style="color: white; margin-left: 10px; font-size: 0.8rem; text-decoration: underline;">[Salir]</a>
-        `;
+
+        if (statusDiv) {
+            statusDiv.innerHTML = `
+                <span style="opacity: 0.8;">Usuario:</span> <strong style="color: #00d1ff;">${user.email}</strong> 
+                <a href="#" onclick="logout()" style="color: white; margin-left: 10px; font-size: 0.8rem; text-decoration: underline;">[Salir]</a>
+            `;
+        }
+        
+        if (navButtons && !document.getElementById('staff-btn')) {
+            const staffBtn = document.createElement('a');
+            staffBtn.href = 'staff.html';
+            staffBtn.className = 'btn';
+            staffBtn.id = 'staff-btn';
+            staffBtn.style.backgroundColor = '#28a745';
+            staffBtn.innerText = 'Рабочая зона';
+            navButtons.appendChild(staffBtn);
+        }
     } else {
-        statusDiv.innerHTML = '<a href="login.html" style="color:white; text-decoration:none;">Acceso Staff</a>';
+
+        if (statusDiv) {
+            statusDiv.innerHTML = '<a href="login.html" style="color:white; text-decoration:none;">Acceso Staff</a>';
+        }
     }
 }
 
