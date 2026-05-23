@@ -31,9 +31,7 @@
     <main class="container">
         <section class="content-block" style="max-width: 500px; margin: 40px auto; border: 1px solid var(--border-color); padding: 30px; background-color: #f9f9f9;">
             <h2 style="text-align: center; border: none; text-transform: uppercase; letter-spacing: 1px;">Acceso Restringido</h2>
-            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 30px;">
-                Esta sección es solo para personal autorizado de T.I.E.B.
-            </p>
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 30px;">Esta sección es solo para personal autorizado de T.I.E.B.</p>
 
             <form id="loginForm">
                 <div class="info-item" style="border: none; margin-bottom: 20px;">
@@ -44,13 +42,11 @@
 
                 <div class="info-item" style="border: none; margin-bottom: 30px;">
                     <strong style="margin-bottom: 8px;">Contraseña</strong>
-                    <input type="password" id="password" placeholder="••••••••" required 
+                    <input type="password" id="password" placeholder="•••••••" required 
                            style="width: 100%; padding: 12px; border: 1px solid var(--border-color); font-family: inherit;">
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
-                    Iniciar Sesión
-                </button>
+                <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">Iniciar Sesión</button>
                 
                 <p id="message" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
             </form>
@@ -79,7 +75,7 @@
 
                 try {
                     if (typeof supabaseClient === 'undefined') {
-                        throw new Error("supabaseClient не найден. Проверь подключение db-config.js");
+                        throw new Error("supabaseClient didnt found. check ur connection db-config.js");
                     }
 
                     const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -92,7 +88,7 @@
                         message.innerText = "Error de acceso: " + error.message;
                     } else {
                         message.style.color = "green";
-                        message.innerText = "Acceso concedido. Redirigiendo...";
+                        message.innerText = "Acceso concedido!";
 
                         setTimeout(() => {
                             window.location.href = 'index.html'; 
