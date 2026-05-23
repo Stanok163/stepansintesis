@@ -24,7 +24,7 @@ async function checkStatus() {
             staffBtn.className = 'btn';
             staffBtn.id = 'staff-btn';
             staffBtn.style.backgroundColor = '#28a745';
-            staffBtn.innerText = 'Рабочая зона';
+            staffBtn.innerText = 'Stuff zone';
             navButtons.appendChild(staffBtn);
         }
     } else {
