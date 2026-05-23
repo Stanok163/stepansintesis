@@ -70,24 +70,38 @@
 
             loginForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+
                 message.style.color = "var(--primary-blue)";
                 message.innerText = "Verificando...";
 
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: password,
-                });
+                try {
+                    if (typeof supabase === 'undefined') {
+                        throw new Error("ConfigFile db-config.js no encontrado o contiene errores");
+                    }
 
-                if (error) {
+                    const { data, error } = await supabase.auth.signInWithPassword({
+                        email: email,
+                        password: password,
+                    });
+
+                    if (error) {
+                        message.style.color = "red";
+                        message.innerText = "Error de acceso: " + error.message;
+                    } else {
+                        message.style.color = "green";
+                        message.innerText = "Acceso concedido. Redirigiendo...";
+
+                        setTimeout(() => {
+                            window.location.href = 'index.html'; 
+                        }, 2000);
+                    }
+
+                } catch (err) {
                     message.style.color = "red";
-                    message.innerText = "Error de acceso: " + error.message;
-                } else {
-                    message.style.color = "green";
-                    message.innerText = "Acceso concedido. Redirigiendo...";
-                    setTimeout(() => window.location.href = 'index.html', 1500);
+                    message.innerText = "Error critic: " + err.message;
                 }
             });
         });

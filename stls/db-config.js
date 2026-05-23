@@ -1,5 +1,6 @@
 const _supabaseUrl = 'https://grtxbqsnjbvqpykpqlrl.supabase.co';
 const _supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdydHhicXNuamJ2cXB5a3BxbHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA4NzIsImV4cCI6MjA5Mzk3Njg3Mn0.Lzb8GPDB4uP3owZu93LWKlh1GDRtMKKlfg54gGKIRL0';
+
 const supabase = supabase.createClient(_supabaseUrl, _supabaseKey);
 
 async function updateAuthUI() {
@@ -26,9 +27,8 @@ async function checkStatus() {
 
     if (user) {
         statusDiv.innerHTML = `
-            <span style="font-size: 0.8rem; opacity: 0.8;">Usuario:</span><br>
-            <strong style="font-size: 1rem;">${user.email}</strong><br>
-            <a href="#" onclick="logout()" style="color: #00d1ff; font-size: 0.8rem;">Cerrar Sesión</a>
+            <span style="opacity: 0.8;">Usuario:</span> <strong style="color: #00d1ff;">${user.email}</strong> 
+            <a href="#" onclick="logout()" style="color: white; margin-left: 10px; font-size: 0.8rem; text-decoration: underline;">[Salir]</a>
         `;
     }
 }

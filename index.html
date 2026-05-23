@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="stls/db-config.js"></script>
+    <script src="stls/db-config.js" defer></script>
     <script>
         const supabase = supabase.createClient(_supabaseUrl, _supabaseKey);
 
@@ -32,8 +31,7 @@
             <div class="title-area">
                 <h1>T.I.E.B</h1>
             </div>
-            <div id="user-status" style="margin-left: auto; color: white; font-size: 0.9rem;"></div>
-            <div id="user-status" style="margin-left: auto; text-align: right; color: white;"></div>
+            <div id="user-status" style="margin-left: auto; text-align: right; color: white; font-size: 0.9rem;"></div>
         </div>
     </header>
 
