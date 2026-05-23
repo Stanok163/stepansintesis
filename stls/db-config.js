@@ -30,7 +30,7 @@ async function checkStatus() {
     } else {
 
         if (statusDiv) {
-            statusDiv.innerHTML = '<a href="login.html" style="color:white; text-decoration:none;">Acceso Staff</a>';
+            statusDiv.innerHTML = '<a href="login.html" style="color:white; text-decoration:none;">Log in →</a>';
         }
     }
 }
