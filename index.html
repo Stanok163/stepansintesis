@@ -4,16 +4,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="stls/db-config.js" defer></script>
     <script>
-        const supabase = supabase.createClient(_supabaseUrl, _supabaseKey);
-
-        async function checkUser() {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-
-                window.location.href = 'login.html';
-            }
-        }
-        checkUser();
+        document.addEventListener('DOMContentLoaded', async () => {
+            setTimeout(async () => {
+                if (typeof supabaseClient !== 'undefined') {
+                    const { data: { user } } = await supabaseClient.auth.getUser();
+                    if (!user) {
+                        window.location.href = 'login.html';
+                    }
+                }
+            }, 500);
+        });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
