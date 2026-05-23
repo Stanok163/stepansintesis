@@ -5,7 +5,6 @@
     <script src="stls/db-config.js" defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
-        // Ждем загрузку клиента
         setTimeout(async () => {
             if (typeof supabaseClient !== 'undefined') {
                 const { data: { user } } = await supabaseClient.auth.getUser();
